@@ -9,87 +9,64 @@ import view.IFuncionalidade;
 
 public class App {
     public static void main(String[] args) throws Exception {
+        
         Cafeteria cafeteria = new Cafeteria();
-
+        
         Produto leite = new Produto("Leite Integral", 15, 8.98);
-
         Produto leite2 = new Produto("Leite Desnatado", 30, 12.98);
-
         Produto cafe = new Produto("Café Preto", 9, 4.98);
-
         Insumo acucar = new Insumo("Açúcar", 20, 2.50);
-
         Insumo agua = new Insumo("Água", 50, 1.50);
+        Venda venda1 = new Venda(cafe, agua, null , null);
+        Pessoa funcionario1 = new Funcionario("Giorgian Arrasca", "111.222.333-44", 1440.18);
+        Pessoa usuario1 = new Usuario("Pedro Gelbisco", "314.613.645-66", "pedroviski@email.com");
 
-        // Pessoa funcionario1 = new Funcionario("Giorgian Arrasca", "111.222.333-44", 1440.18);
+        //////// PARTE DO PRODUTO ////////
 
-        // Pessoa usuario1 = new Usuario("Pedro Gelbisco", "314.613.645-66", "pedroviski@email.com");
-
-        System.out.println(cafeteria);
-
-        cafeteria.AdicionarProduto(leite);
-        cafeteria.AdicionarProduto(leite2);
-        cafeteria.AdicionarProduto(cafe);
-
-        cafeteria.AdicionarProduto(cafe);
-
-        cafeteria.RemoverProduto(cafe);
-
-        cafeteria.AdicionarProduto(cafe);
-
-        cafeteria.RemoverProduto(cafe);
-
-        cafeteria.AdicionarProduto(cafe);
-
-        cafeteria.ListarProdutos();
-
-        //////// PARTE DA PESSOA ////////
-
-        try {
-            cafeteria.ListarPessoas();
-        } catch (Exception erroListagem) {
-            System.out.println("\nNão Foi Possível Listar!!!");
-        }
-
-        // cafeteria.AdicionarFuncionario(funcionario1);
-
-        // cafeteria.AdicionarUsuario(usuario1);
+        IFuncionalidade.ListarProdutos(cafeteria);
+        IFuncionalidade.AdicionarProduto(cafeteria, leite);
+        IFuncionalidade.AdicionarProduto(cafeteria, leite2);
+        IFuncionalidade.AdicionarProduto(cafeteria, cafe);
+        IFuncionalidade.AdicionarProduto(cafeteria, cafe);
+        IFuncionalidade.RemoverProduto(cafeteria, cafe);
+        IFuncionalidade.RemoverProduto(cafeteria, cafe);
+        System.out.println();
 
         //////// PARTE DO INSUMO ////////
 
-        // cafeteria.AdicionarInsumo(acucar);
-        cafeteria.AdicionarInsumo(agua);
+        IFuncionalidade.ListarInsumos(cafeteria);
+        IFuncionalidade.AdicionarInsumo(cafeteria, agua);
+        IFuncionalidade.AdicionarInsumo(cafeteria, acucar);
+        IFuncionalidade.AdicionarInsumo(cafeteria, acucar);
+        IFuncionalidade.RemoverInsumo(cafeteria, acucar);
+        IFuncionalidade.RemoverInsumo(cafeteria, acucar);
+        System.out.println();
 
-        cafeteria.RemoverInsumo(acucar);
+        //////// PARTE DA PESSOA ////////
 
-        cafeteria.ListarInsumos();
+        IFuncionalidade.ListarPessoas(cafeteria);
+        IFuncionalidade.ListarFuncionarios(cafeteria);
+        IFuncionalidade.AdicionarFuncionario(cafeteria, funcionario1);
+        IFuncionalidade.AdicionarFuncionario(cafeteria, funcionario1);
+        IFuncionalidade.RemoverFuncionario(cafeteria, funcionario1);
+        IFuncionalidade.RemoverFuncionario(cafeteria, funcionario1);
+
+        IFuncionalidade.ListarUsuarios(cafeteria);
+        IFuncionalidade.AdicionarUsuario(cafeteria, usuario1);
+        IFuncionalidade.AdicionarUsuario(cafeteria, usuario1);
+        IFuncionalidade.RemoverUsuario(cafeteria, usuario1);
+        IFuncionalidade.RemoverUsuario(cafeteria, usuario1);
+        System.out.println();
+
 
         //////// PARTE DA VENDA ////////
 
-        IFuncionalidade.listarVendas(cafeteria);
-    
-        try {
-            System.out.println(cafeteria.listarVendas());
-        } catch (Exception erroVenda) {
-            System.out.println("Não há vendas registradas");
-        }
+        IFuncionalidade.ListarVendas(cafeteria);
+        IFuncionalidade.AdicionarVenda(cafeteria, venda1);
+        IFuncionalidade.AdicionarVenda(cafeteria, venda1);
+        IFuncionalidade.RemoverVenda(cafeteria, venda1);
+        IFuncionalidade.RemoverVenda(cafeteria, venda1);
+        System.out.println();
 
-        Venda teste = new Venda(cafe, agua, null , null);
-
-        cafeteria.adicionarVenda(teste);
-
-        IFuncionalidade.adicionarVenda(teste, cafeteria);
-        
-        cafeteria.RemoverVenda(teste);
-
-        IFuncionalidade.adicionarVenda(teste, cafeteria);
-
-        cafeteria.RemoverVenda(teste);
-
-        IFuncionalidade.adicionarVenda(teste, cafeteria);
-
-        cafeteria.RemoverVenda(teste);
-
-        IFuncionalidade.adicionarVenda(teste, cafeteria);
     }
 }

@@ -31,24 +31,25 @@ public class Cafeteria {
 ////// ------------ PRODUTO ------------ //////
 
     //////// ADICIONAR PRODUTO ////////
-    public List<Produto> AdicionarProduto(Produto novoProduto) throws Exception{
+    public void AdicionarProduto(Produto novoProduto) throws Exception{
         int novoCodigo = codigoProduto + 1;
 
         if (BuscarProduto(novoProduto.getCodigoProduto()) == null) {
             novoProduto.setCodigoProduto(novoCodigo);
             codigoProduto = novoCodigo;
             produtos.add(novoProduto);
-            throw new Exception(novoProduto.getNomeProduto() + ", com código: " + novoProduto.getCodigoProduto()
+            // throw new Exception("AdicionouProduto");
+            System.out.println(novoProduto.getNomeProduto() + ", com código: " + novoProduto.getCodigoProduto()
                     + " cadastrado com sucesso!");
         } else {
-            throw new Exception("Produto já cadastrado com esse id! (" + novoProduto.getCodigoProduto() + ")");
+            throw new Exception("erroAdicionarProduto");
         }
     }
 
     //////// LISTAR PRODUTO ////////
     public List<Produto> ListarProdutos() throws Exception{
         if (produtos.size() == 0) {
-            throw new Exception("Não há produtos cadastradas!");
+            throw new Exception("erroListarProduto");
         }
         return produtos;
     }
@@ -57,18 +58,18 @@ public class Cafeteria {
     public void RemoverProduto(Produto removerProduto) throws Exception{
         if (BuscarProduto(removerProduto.getCodigoProduto()) != null) {
             produtos.remove(removerProduto);
-            throw new Exception(removerProduto.getNomeProduto() + ", com código: " + removerProduto.getCodigoProduto()
+            System.out.println(removerProduto.getNomeProduto() + ", com código: " + removerProduto.getCodigoProduto()
                     + " removido com sucesso!");
         } else {
-            throw new Exception("Produto não encontrada!");
+            throw new Exception("erroRemoverProduto");
         }
     }
 
     //////// BUSCAR PRODUTO ////////
-    public List<Produto> BuscarProduto(int idProduto) {
+    public Produto BuscarProduto(int idProduto) {
         for (Produto produto : produtos) {
             if (produto.getCodigoProduto() == idProduto) {
-                return produtos;
+                return produto;
             }
         }
         return null;
@@ -85,10 +86,10 @@ public void AdicionarInsumo(Insumo novoInsumo) throws Exception{
         novoInsumo.setCodigoInsumo(novoCodigo);
         codigoInsumo = novoCodigo;
         insumos.add(novoInsumo);
-        throw new Exception(novoInsumo.getNomeInsumo() + ", com código: " + novoInsumo.getCodigoInsumo()
+        System.out.println(novoInsumo.getNomeInsumo() + ", com código: " + novoInsumo.getCodigoInsumo()
                 + " cadastrado com sucesso!");
     } else {
-        throw new Exception("Insumo já cadastrado com esse id! (" + novoInsumo.getCodigoInsumo() + ")");
+        throw new Exception("erroAdicionarInsumo");
     }
 }
 
@@ -96,7 +97,7 @@ public void AdicionarInsumo(Insumo novoInsumo) throws Exception{
 
 public List<Insumo> ListarInsumos() throws Exception{
     if (insumos.size() == 0) {
-        throw new Exception("Não há insumos cadastrados!");
+        throw new Exception("erroListarInsumos");
     }
     return insumos;
 }
@@ -106,10 +107,10 @@ public List<Insumo> ListarInsumos() throws Exception{
 public void RemoverInsumo(Insumo removerInsumo) throws Exception{
     if (BuscarInsumo(removerInsumo.getCodigoInsumo()) != null) {
         insumos.remove(removerInsumo);
-        throw new Exception(removerInsumo.getNomeInsumo() + ", com código: " + removerInsumo.getCodigoInsumo()
+        System.out.println(removerInsumo.getNomeInsumo() + ", com código: " + removerInsumo.getCodigoInsumo()
                 + " removido com sucesso!");
     } else {
-        throw new Exception("Insumo não encontrado!");
+        throw new Exception("erroRemoverInsumo");
     }
 }
 
@@ -134,10 +135,10 @@ public Insumo BuscarInsumo(int idInsumo) {
             novoFuncionario.setIdPessoa(novoCodigo);
             codigoPessoa = novoCodigo;
             pessoas.add(novoFuncionario);
-            throw new Exception(novoFuncionario.getNome() + ", com código: " + novoFuncionario.getIdPessoa()
+            System.out.println(novoFuncionario.getNome() + ", com código: " + novoFuncionario.getIdPessoa()
                     + " cadastrado com sucesso!");
         } else {
-            throw new Exception("Funcionário já cadastrado com esse id! (" + novoFuncionario.getIdPessoa() + ")");
+            throw new Exception("erroAdicionarFuncionário");
         }
     }
 
@@ -145,18 +146,18 @@ public Insumo BuscarInsumo(int idInsumo) {
     public void RemoverFuncionario(Pessoa removerFuncionario) throws Exception{
         if (BuscarFuncionarios(removerFuncionario.getIdPessoa()) != null) {
             pessoas.remove(removerFuncionario);
-            throw new Exception(
+            System.out.println(
                     removerFuncionario.getNome() + ", com código: " + removerFuncionario.getIdPessoa()
                             + " removido com sucesso!");
         } else {
-            throw new Exception("Funcionário não encontrado!");
+            throw new Exception("erroRemoverFuncionario");
         }
     }
 
     //////// LISTAR FUNCIONARIOS ////////
     public List<Funcionario> ListarFuncionarios() throws Exception {
         if (pessoas.size() == 0) {
-            throw new Exception("Não há funcionarios cadastrados!");
+            throw new Exception("erroListarFuncionarios");
         } else {
             List<Funcionario> funcionarios = new ArrayList<>();
             for (Pessoa pessoa : pessoas) {
@@ -194,10 +195,10 @@ public Insumo BuscarInsumo(int idInsumo) {
             novoUsuario.setIdPessoa(novoCodigo);
             codigoPessoa = novoCodigo;
             pessoas.add(novoUsuario);
-            throw new Exception(novoUsuario.getNome() + ", com código: " + novoUsuario.getIdPessoa()
+            System.out.println(novoUsuario.getNome() + ", com código: " + novoUsuario.getIdPessoa()
                     + " cadastrado com sucesso!");
         } else {
-            throw new Exception("Usuario já cadastrado com esse id! (" + novoUsuario.getIdPessoa() + ")");
+            throw new Exception("erroAdicionarUsuario");
         }
     }
 
@@ -205,18 +206,18 @@ public Insumo BuscarInsumo(int idInsumo) {
     public void RemoverUsuario(Pessoa removerUsuario) throws Exception{
         if (BuscarUsuarios(removerUsuario.getIdPessoa()) != null) {
             pessoas.remove(removerUsuario);
-            throw new Exception(
+            System.out.println(
                 removerUsuario.getNome() + ", com código: " + removerUsuario.getIdPessoa()
                             + " removido com sucesso!");
         } else {
-            throw new Exception("Usuário não encontrado!");
+            throw new Exception("erroRemoverUsuario");
         }
     }
 
     //////// LISTAR USUARIOS ////////
     public List<Usuario> ListarUsuarios() throws Exception {
         if (pessoas.size() == 0) {
-            throw new Exception("Não há usuarios cadastrados!");
+            throw new Exception("erroListarUsuarios");
         } else {
             List<Usuario> usuarios = new ArrayList<>();
             for (Pessoa pessoa : pessoas) {
@@ -246,19 +247,9 @@ public Insumo BuscarInsumo(int idInsumo) {
         return null;
     }
 
-    ////// LISTAR PESSOAS (USUÁRIOS E FUNCIONÁRIOS) ////////
-
-    // public void ListarPessoas() {
-    //     if (pessoas.size() == 0) {
-    //         System.out.println("Não há pessoas cadastrados!");
-    //     } else {
-    //         System.out.println(pessoas);
-    //     }
-    // }
-
     public List<Pessoa> ListarPessoas() throws Exception {
         if (pessoas.isEmpty()) {
-            throw new Exception ("Não há pessoas cadastrados!");
+            throw new Exception ("erroListarPessoas");
         }
         return pessoas;
     }
@@ -274,21 +265,21 @@ public Insumo BuscarInsumo(int idInsumo) {
 ////// ------------ VENDA ------------ //////
 
     //////// ADICIONAR VENDA ////////
-    public List<Venda> adicionarVenda(Venda novaVenda) throws Exception {
+    public void AdicionarVenda(Venda novaVenda) throws Exception {
         int novoCodigo = codigoVendas + 1;
     
         if (BuscarVenda(novaVenda.getIdVenda()) == null) {
             novaVenda.setIdVenda(novoCodigo);
             codigoVendas = novoCodigo;
             vendas.add(novaVenda);
-            throw new Exception("venda (" + novaVenda.getIdVenda() + ") cadastrada com sucesso!");
+            System.out.println("venda (" + novaVenda.getIdVenda() + ") cadastrada com sucesso!");
         } else {
             throw new Exception("erroAdicionarVenda");
         }
     }
 
     //////// LISTAR VENDA ////////
-    public List<Venda> listarVendas() throws Exception {
+    public List<Venda> ListarVendas() throws Exception {
         if (vendas.isEmpty()) {
             throw new Exception("erroListarVenda");
         }
@@ -309,9 +300,9 @@ public Insumo BuscarInsumo(int idInsumo) {
     public void RemoverVenda(Venda removerVenda) throws Exception{
             if (BuscarVenda(removerVenda.getIdVenda()) != null) {
                 vendas.remove(removerVenda);
-                throw new Exception("venda removida");
+                System.out.println("venda removida");
             } else {
-                throw new Exception("A venda com o ID " + removerVenda.getIdVenda() + " não foi encontrada.");
+                throw new Exception("erroRemoverVenda");
             }
         }
 
