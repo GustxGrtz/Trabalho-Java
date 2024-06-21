@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+
+import Cafeteria.util.Log;
 import controller.Cafeteria;
 import models.Insumo.Insumo;
 import models.Pessoa.Funcionario;
@@ -11,7 +14,14 @@ public class App {
     public static void main(String[] args) throws Exception {
         
         Cafeteria cafeteria = new Cafeteria();
+
+        Textos textos = new Textos(new ArrayList<String>());
         
+        textos.add("Aluno 1");
+        textos.add("Aluno 2");
+        textos.add("Aluno 3");
+        textos.add("Aluno 4");
+
         Produto leite = new Produto("Leite Integral", 15, 8.98);
         Produto leite2 = new Produto("Leite Desnatado", 30, 12.98);
         Produto cafe = new Produto("Café Preto", 9, 4.98);
@@ -20,6 +30,7 @@ public class App {
         Venda venda1 = new Venda(cafe, agua, null , null);
         Pessoa funcionario1 = new Funcionario("Giorgian Arrasca", "111.222.333-44", 1440.18);
         Pessoa usuario1 = new Usuario("Pedro Gelbisco", "314.613.645-66", "pedroviski@email.com");
+        
 
         //////// PARTE DO PRODUTO ////////
 
@@ -30,6 +41,7 @@ public class App {
         IFuncionalidade.AdicionarProduto(cafeteria, cafe);
         IFuncionalidade.RemoverProduto(cafeteria, cafe);
         IFuncionalidade.RemoverProduto(cafeteria, cafe);
+        Log.salvar(textos.getTextos(), "teste");
         System.out.println();
 
         //////// PARTE DO INSUMO ////////
@@ -68,5 +80,6 @@ public class App {
         IFuncionalidade.RemoverVenda(cafeteria, venda1);
         System.out.println();
 
+        System.out.println(Log.ler("teste"));
     }
 }
